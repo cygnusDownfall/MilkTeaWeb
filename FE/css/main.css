@@ -1,0 +1,51 @@
+body {
+    padding: 0, 0, 0, 0;
+    margin: 0, 0, 0, 0;
+}
+
+.mainpage {
+    display: flex;
+    width: auto;
+    height: auto;
+    margin: 0, 0, 0, 0;
+    padding: 0, 0, 0, 0;
+    vertical-align: middle;
+    align-self: stretch;
+
+}
+
+.topbar {
+    margin: 0, 0, 0, 0;
+    display: flex;
+    flex: auto;
+    background: #766FFD;
+    width: fit-content;
+    height: 40vh;
+    align-self: stretch;
+
+}
+
+
+/*start logo */
+.logo_container {
+    width: fit-content;
+    height: fit-content;
+
+}
+
+@keyframes loadLogoMath_Tea {
+    from {opacity: 0.5;}
+    to{opacity: 1;}
+
+}
+
+.logoTea {
+    width: 200px;
+    height: 200px;
+    flex: content;
+    background-image: url(../Texture/TeaCup.png);
+    animation: loadLogoMath_Tea 2s
+        /*name duration timing-function delay iteration-count direction fill-mode;*6nnqpcip/
+}
+
+/*end logo*/

@@ -1,1 +1,27 @@
-﻿sometext 
+﻿
+Func tree:
+/home 
+/login
+/post_production
+/detail_milktea
+
+
+Color space:
+/*
+#766FFD
+#6480E3
+#7BB9FA
+#64C3E3
+#6FFDFB
+
+#FFF719
+#FFCC26
+#EBD026
+#B5E80C
+#73FF0D
+*/
+
+
+
+
+
