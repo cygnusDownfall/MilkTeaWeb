@@ -2,71 +2,46 @@
 <header>
     <title>MilkTea Shop</title>
     <link rel="stylesheet" href="css/main.css" />
-
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </header>
 
 <body>
-    <!--
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
-    <script>
-        // create a scene
-        const scene = new THREE.Scene();
-
-        // create a camera
-        const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 1000);
-
-        // set the camera position
-        camera.position.set(2, 2, 2);
-        camera.lookAt(scene.position);
-
-        // create a renderer
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
-        document.body.appendChild(renderer.domElement);
-
-        //create light
-        const light = new THREE.PointLight(0xffffff, 1);
-        light.position.set(1, 1, 1);
-        scene.add(light);
-
-        // create the first cube
-        const geometry = new THREE.BoxGeometry(1, 1, 1);
-        const material = new THREE.MeshBasicMaterial({ color: 0xaaaaff });
-        const cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
-
-        // create the second cube
-        const geometry2 = new THREE.BoxGeometry(1, 1, 1);
-        const material2 = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-        const cube2 = new THREE.Mesh(geometry2, material2);
-        cube2.position.x += 1.5;
-        scene.add(cube2);
-
-        // render the scene
-        function animate() {
-            requestAnimationFrame(animate);
-            renderer.render(scene, camera);
-        }
-        animate();
-    </script>
-
-   -->
-
     <div class="mainpage">
-        <div class="topbar">
-            <div class="logo_container">
-                <div class="logoTea"></div>
-                <div>+</div>
-                <div class="logoTea"></div>
-            </div>
-            <div></div>
-            <div></div>
+
+       <div class="topbar">
+            <form action="/about" method="get">
+                <button class="lowbutton" name="about" value="AAAAAA">Giới thiệu</button>
+
+            </form>
+            <form action="/login" method="get">
+                <button class="lowbutton" name="login" value="login">Đăng nhập</button>
+
+            </form>
             <div></div>
         </div>
+
+        <div class="txtBiggest">Chào bạn,<h3 class="txtContent">bạn muốn mua gì ?
+                <form action="shop" method="get">
+                    <button class="highbutton">
+                        tới gian hàng
+                        <ion-icon name="arrow-forward-outline" class="icon"></ion-icon>
+                    </button>
+                </form>
+            </h3>
+        </div>
+        <div class="boxOfCircle">
+            <div class="circle"></div>
+        </div>
+        <img class="imglogo" src="Texture\MilkTea.png" alt="logo" />
 
     </div>
 </body>
 
 <footer>
-
+    <canvas class="threeDimensionCanva" >
+<script>
+    
+</script>
+    </canvas>
 </footer>

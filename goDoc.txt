@@ -1,0 +1,27 @@
+Go là ngôn ngữ lập trình mã nguồn mở 
+cách cài đặt: tải trên trang chủ của Go hoặc Github 
+
+Go có nhiều ưu điểm. Đây là một số ưu điểm chính của Go:
+Dễ học: Go được thiết kế để dễ học và sử dụng. Cú pháp của nó đơn giản và rõ ràng.
+Tích hợp đồng thời: Go có đồng thời tích hợp, cho phép bạn viết chương trình đa luồng một cách dễ dàng.
+Thư viện chuẩn mạnh mẽ: Go có một thư viện chuẩn mạnh mẽ với nhiều gói hữu ích.
+Biên dịch nhanh: Go được biết đến với thời gian biên dịch nhanh và kích thước nhị phân nhỏ.
+Cộng đồng lớn: Go có một cộng đồng lớn và năng động với nhiều tài nguyên học tập và hỗ trợ.
+Những ưu điểm này làm cho Go trở thành một lựa chọn tuyệt vời cho nhiều dự án lập trình khác nhau.
+
+
+Kênh (channel) là một tính năng quan trọng trong Go để giúp bạn giao tiếp giữa các goroutine. Kênh cho phép bạn gửi và nhận dữ liệu giữa các goroutine một cách an toàn.
+Bạn có thể tạo một kênh mới bằng cách sử dụng hàm make với kiểu chan. Ví dụ: ch := make(chan int) tạo một kênh kiểu int.
+Để gửi dữ liệu vào kênh, bạn sử dụng toán tử <-. Ví dụ: ch <- 1 gửi giá trị 1 vào kênh ch.
+Để nhận dữ liệu từ kênh, bạn cũng sử dụng toán tử <-. Ví dụ: x := <-ch nhận một giá trị từ kênh ch và lưu vào biến x.
+Kênh có thể được đóng để chỉ ra rằng không có thêm dữ liệu nào được gửi. Để đóng một kênh, bạn sử dụng hàm close. Ví dụ: close(ch) đóng kênh ch.
+
+
+Đồng bộ hóa là một khía cạnh quan trọng của lập trình đa luồng. Trong Go, bạn có thể sử dụng các công cụ trong gói sync để đồng bộ hóa truy cập đến dữ liệu được chia sẻ giữa các goroutine.
+Một trong những công cụ quan trọng nhất trong gói sync là Mutex. Mutex là một loại khóa đảm bảo rằng chỉ có một goroutine có thể truy cập vào một phần dữ liệu được chia sẻ tại một thời điểm. Bạn có thể sử dụng phương thức Lock và Unlock của Mutex để khóa và mở khóa dữ liệu được chia sẻ.
+Một công cụ khác trong gói sync là WaitGroup. WaitGroup cho phép bạn đợi một nhóm các goroutine hoàn thành trước khi tiếp tục. Bạn có thể sử dụng phương thức Add để thêm một goroutine vào nhóm, phương thức Done để chỉ ra rằng một goroutine đã hoàn thành, và phương thức Wait để đợi tất cả các goroutine trong nhóm hoàn thành.
+
+
+
+Go Gin:
+https://go.dev/doc/tutorial/web-service-gin

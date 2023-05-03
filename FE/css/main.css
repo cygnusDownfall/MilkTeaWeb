@@ -1,51 +1,131 @@
+*, html{
+    margin: 0;
+    padding: 0;
+}
 body {
-    padding: 0, 0, 0, 0;
-    margin: 0, 0, 0, 0;
+    height: 100vh;
+    width: 100vw;
+    align-self: stretch;
+    border: 0px;
 }
 
 .mainpage {
-    display: flex;
-    width: auto;
-    height: auto;
-    margin: 0, 0, 0, 0;
-    padding: 0, 0, 0, 0;
-    vertical-align: middle;
-    align-self: stretch;
-
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    
+    background-image: linear-gradient(to bottom, #ffffff, #7BB9FA, #6480E3);
 }
 
 .topbar {
-    margin: 0, 0, 0, 0;
     display: flex;
-    flex: auto;
-    background: #766FFD;
-    width: fit-content;
-    height: 40vh;
-    align-self: stretch;
+    width: auto;
+    height: 10vh;
+    flex-direction: row;
 
 }
 
 
-/*start logo */
-.logo_container {
-    width: fit-content;
-    height: fit-content;
+.circle {
+    border-radius: 50%;
+    width: 200%;
+    height: 200%;
+    background-color: #fff719cf;
+    transform: translateX(-50%);
+}
+
+.boxOfCircle {
+    width: 50vh;
+    height: 50vh;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.imglogo {
+    position: relative;
+    bottom: 20vh;
+    left: 50px;
+    width: 500px;
+    height: 500px;
+}
+
+.txtBiggest {
+    position: relative;
+    width: 70vw;
+    height: 60vh;
+    font-size: 15vh;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    top: 20vh;
+    left: 10vw;
+}
+
+.txtBiggest h3{
+    position: relative;
+    height: auto;
+    left: 40vw;
+    font-size: 50px;
+    font-family: 'Courier New', Courier, monospace;
+}
+.txtBiggest .highbutton{
+    width:250px;
+    height: 80px;
+    background-color: blue;
+    border-color: blue;
+    padding: 32px,18px,32,18px;
+    color: white;
+    font-size: 20pt;
+    font-family: 'Source+Serif+Pro';
+    border-width: 5px;
+    border-radius:50px;
+}
+.txtBiggest .highbutton:hover{
+    scale: 1.1;
+    
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@1,300&display=swap') ;
+
+.txtContent{
+    position: relative;
+    width: 70vw;
+    height: 50vh;
+    font-size: 8vh;
+    top:0;
+    left: 20vw;
+}
+
+.lowbutton{
+    width:200px;
+    height: 50px;
+    padding: 32px,18px,32,18px;
+    color: blue;
+    border-color: blue;
+    border-width: 5px;
+    border-radius:50px;
+    font-size: 16pt;
+    font-weight: 200%;
+    background-color: #0037ff00;
+    align-content: center;
+    float: right;
+}
+
+.lowbutton:hover{
+    scale: 1.1;
+    color: white;
+    background-color: blue;
+}
+
+
+
+.threeDimensionCanva{
+    width: auto;
+    height: auto;
+
 
 }
 
-@keyframes loadLogoMath_Tea {
-    from {opacity: 0.5;}
-    to{opacity: 1;}
-
+.icon{
+    font-size: 16pt;
 }
-
-.logoTea {
-    width: 200px;
-    height: 200px;
-    flex: content;
-    background-image: url(../Texture/TeaCup.png);
-    animation: loadLogoMath_Tea 2s
-        /*name duration timing-function delay iteration-count direction fill-mode;*6nnqpcip/
-}
-
-/*end logo*/
