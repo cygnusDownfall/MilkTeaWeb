@@ -1,9 +1,4 @@
 ﻿
-Func tree:
-/home 
-/login
-/post_production
-/detail_milktea
 
 
 Color space:

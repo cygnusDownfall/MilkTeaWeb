@@ -2,23 +2,24 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
 )
 
-func connect() *sql.DB {
-	db, err := sql.Open("mysql", "user:password@tcp(127.0.0.1:3306)/database_name")
+func connect(dbname string) *sql.DB {
+	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/"+dbname)
 	if err != nil {
 		panic(err.Error())
 	}
-	defer db.Close()
+
 	return db
 }
 
+/*
 func query(sqlQuery string) {
 
-	db := connect()
+	db := connect("ql")
+	defer db.Close()
 	var (
 		id   int
 		name string
@@ -46,8 +47,8 @@ func query(sqlQuery string) {
 
 func exe(sqlExe string) {
 
-	db := connect()
-
+	db := connect("ql")
+	defer db.Close()
 	res, err := db.Exec(sqlExe)
 	if err != nil {
 		panic(err.Error())
@@ -58,5 +59,6 @@ func exe(sqlExe string) {
 		panic(err.Error())
 	}
 
-	fmt.Printf("Inserted row with ID: %d\n", lastId)
+	fmt.Printf("ID: %d\n", lastId)
 }
+*/

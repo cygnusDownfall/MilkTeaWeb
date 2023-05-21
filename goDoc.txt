@@ -1,5 +1,10 @@
+//gioi thieu
 Go là ngôn ngữ lập trình mã nguồn mở 
 cách cài đặt: tải trên trang chủ của Go hoặc Github 
+
+Go là một ngôn ngữ lập trình được tạo ra bởi các nhân viên của Google, chủ yếu là Rob Pike, một chuyên gia Unix lâu năm và kỹ sư nổi bật của Google. Go được thiết kế để dễ học, dễ làm việc và dễ đọc bởi các nhà phát triển khác. Go không có nhiều tính năng, đặc biệt khi so sánh với các ngôn ngữ như C++. Cú pháp của Go giống với C, khiến cho các nhà phát triển C lâu năm dễ dàng học hơn. Go đã được so sánh với các ngôn ngữ kịch bản như Python trong khả năng đáp ứng nhiều nhu cầu lập trình thông thường. Go cung cấp khả năng quản lý bộ nhớ tự động bao gồm thu gom rác.
+
+Go được thiết kế để chạy trên nhiều lõi, được xây dựng để hỗ trợ đồng thời và mở rộng khi thêm lõi. Ngoài ra, khả năng đa luồng của nó - đặc biệt là goroutines - là một sự bổ sung đáng ngạc nhiên và đáng chào đón cho túi tiện ích của bạn. Goroutines là các chức năng đồng thời chạy trong khi phần còn lại của chương trình hoàn thành. Nói cách khác, bạn có thể kích hoạt một goroutine, để nó chạy và tiếp tục trong khi nó và hàng ngàn anh em của nó xử lý trong nền.
 
 Go có nhiều ưu điểm. Đây là một số ưu điểm chính của Go:
 Dễ học: Go được thiết kế để dễ học và sử dụng. Cú pháp của nó đơn giản và rõ ràng.
@@ -9,6 +14,7 @@ Biên dịch nhanh: Go được biết đến với thời gian biên dịch nha
 Cộng đồng lớn: Go có một cộng đồng lớn và năng động với nhiều tài nguyên học tập và hỗ trợ.
 Những ưu điểm này làm cho Go trở thành một lựa chọn tuyệt vời cho nhiều dự án lập trình khác nhau.
 
+//go basic co the khong dung
 
 Kênh (channel) là một tính năng quan trọng trong Go để giúp bạn giao tiếp giữa các goroutine. Kênh cho phép bạn gửi và nhận dữ liệu giữa các goroutine một cách an toàn.
 Bạn có thể tạo một kênh mới bằng cách sử dụng hàm make với kiểu chan. Ví dụ: ch := make(chan int) tạo một kênh kiểu int.
@@ -23,5 +29,14 @@ Một công cụ khác trong gói sync là WaitGroup. WaitGroup cho phép bạn 
 
 
 
+defer là một từ khóa trong Go được sử dụng để lên lịch gọi một hàm sau khi hàm chứa câu lệnh defer đã hoàn thành. Điều này có thể hữu ích cho việc dọn dẹp tài nguyên, chẳng hạn như đóng một tệp hoặc một kết nối cơ sở dữ liệu.
+
 Go Gin:
 https://go.dev/doc/tutorial/web-service-gin
+
+//web back end
+
+rows.Scan(&id, &name) đọc dữ liệu từ bản ghi ra 2 biến tham chiếu id name 
+
+
+
