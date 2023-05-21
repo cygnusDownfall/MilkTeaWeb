@@ -35,7 +35,10 @@ func Cproduct(w http.ResponseWriter, r *http.Request) {
 		}
 		sp.masp = r.FormValue("masp")
 		sp.tensp = r.FormValue("tensp")
-		sp.iconencode = r.FormValue("io")
+		sp.iconencode = r.FormValue("icon")
+
+		result := exe("insert into sanpham(masp,tensp,icon) values('%s','%s','%s')")
+		w.Header().Add("result",(result?"thanh cong":"khong thanh cong"))
 		return
 	}
 

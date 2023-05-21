@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -18,47 +19,43 @@ func connect(dbname string) *sql.DB {
 /*
 func query(sqlQuery string) {
 
-	db := connect("ql")
-	defer db.Close()
-	var (
-		id   int
-		name string
-	)
+		db := connect("ql")
+		defer db.Close()
+		var (
+			id   int
+			name string
+		)
 
-	rows, err := db.Query(sqlQuery)
-	if err != nil {
-		panic(err.Error())
-	}
-	defer rows.Close()
-
-	for rows.Next() {
-		err := rows.Scan(&id, &name)
+		rows, err := db.Query(sqlQuery)
 		if err != nil {
 			panic(err.Error())
 		}
-		fmt.Println(id, name)
-	}
+		defer rows.Close()
 
-	err = rows.Err()
-	if err != nil {
-		panic(err.Error())
-	}
-}
+		for rows.Next() {
+			err := rows.Scan(&id, &name)
+			if err != nil {
+				panic(err.Error())
+			}
+			fmt.Println(id, name)
+		}
 
-func exe(sqlExe string) {
+		err = rows.Err()
+		if err != nil {
+			panic(err.Error())
+		}
+	}
+*/
+func exe(sqlExe string) bool {
 
 	db := connect("ql")
 	defer db.Close()
 	res, err := db.Exec(sqlExe)
 	if err != nil {
 		panic(err.Error())
+		return false
 	}
+	fmt.Print(res)
+	return true
 
-	lastId, err := res.LastInsertId()
-	if err != nil {
-		panic(err.Error())
-	}
-
-	fmt.Printf("ID: %d\n", lastId)
 }
-*/

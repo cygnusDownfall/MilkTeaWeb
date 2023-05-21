@@ -12,3 +12,8 @@ fileInput.addEventListener('change', function() {
     var file = fileInput.files[0];
     encodeImageFileAsURL(file);
 });
+
+
+
+
+
