@@ -6,16 +6,16 @@ import (
 	"net/http"
 )
 
-
-
 func main() {
 
-	fileserver := http.FileServer(http.Dir("./FE"))
+	fileserver := http.FileServer(http.Dir("./../FE"))
 	http.Handle("/", fileserver)
 	http.HandleFunc("/Rproduct", Rproduct)
 	http.HandleFunc("/Cproduct", Cproduct)
 	http.HandleFunc("/Uproduct", Uproduct)
 	http.HandleFunc("/Dproduct", Dproduct)
+
+	fmt.Println("Current working directory:", http.Dir("./../FE"))
 
 	http.HandleFunc("/signin", signin)
 	fmt.Print("Starting server at port 1707\n")

@@ -16,6 +16,11 @@ Những ưu điểm này làm cho Go trở thành một lựa chọn tuyệt v�
 
 //go basic co the khong dung
 
+panic() ket thuc ham va tra ve doi tuong truyen vào panic 
+panic() là một hàm được tích hợp sẵn trong ngôn ngữ Go. Nó dừng luồng điều khiển thông thường và bắt đầu hoảng loạn. Khi hàm F gọi panic(), việc thực thi của F dừng lại, bất kỳ hàm nào được hoãn lại trong F đều được thực hiện bình thường và sau đó F trả về cho hàm gọi nó. 
+
+
+
 Kênh (channel) là một tính năng quan trọng trong Go để giúp bạn giao tiếp giữa các goroutine. Kênh cho phép bạn gửi và nhận dữ liệu giữa các goroutine một cách an toàn.
 Bạn có thể tạo một kênh mới bằng cách sử dụng hàm make với kiểu chan. Ví dụ: ch := make(chan int) tạo một kênh kiểu int.
 Để gửi dữ liệu vào kênh, bạn sử dụng toán tử <-. Ví dụ: ch <- 1 gửi giá trị 1 vào kênh ch.
@@ -37,6 +42,6 @@ https://go.dev/doc/tutorial/web-service-gin
 //web back end
 
 rows.Scan(&id, &name) đọc dữ liệu từ bản ghi ra 2 biến tham chiếu id name 
-
+Row.Scan() là một phương thức trong gói database/sql của Go để sao chép các cột từ hàng hiện tại vào các giá trị được trỏ đến bởi dest. Nó được sử dụng để sao chép dữ liệu từ một hàng được trả về bởi một truy vấn vào các giá trị Go
 
 

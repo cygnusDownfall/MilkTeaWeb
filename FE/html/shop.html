@@ -3,7 +3,10 @@
     <title>Cửa hàng</title>
     <link rel="../css/main.css" />
     <link rel="../css/shop.css" />
-    <script src="../js/main.js"></script>
+    <script type="module" src="../js/shop.js">
+        
+    </script>
+    <script> </script>
 </header>
 
 <body>
@@ -11,9 +14,15 @@
 
     </div>
     <div class="leftsidePanel">
-        
+        <div class="searchbar"></div>
     </div>
-    <div class="itemPanel">
-        
+    <button type="button">xem sản phẩm </button>
+    <div class="itemPanel" id="itemmainboard">
+        <template id="itemTemplate">
+            <div class="item">
+                <h3 name="tensptext"></h3>
+                <img name="icon" src="" alt="no img">
+            </div>
+        </template>
     </div>
 </body>
