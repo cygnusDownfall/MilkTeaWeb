@@ -43,6 +43,7 @@ func query(sqlQuery string) {
 	if err != nil {
 		panic(err.Error())
 	}
+	
 }
 
 func exe(sqlExe string) {

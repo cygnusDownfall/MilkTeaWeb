@@ -16,6 +16,7 @@ Những ưu điểm này làm cho Go trở thành một lựa chọn tuyệt v�
 
 //go basic co the khong dung
 
+...................................................
 Kênh (channel) là một tính năng quan trọng trong Go để giúp bạn giao tiếp giữa các goroutine. Kênh cho phép bạn gửi và nhận dữ liệu giữa các goroutine một cách an toàn.
 Bạn có thể tạo một kênh mới bằng cách sử dụng hàm make với kiểu chan. Ví dụ: ch := make(chan int) tạo một kênh kiểu int.
 Để gửi dữ liệu vào kênh, bạn sử dụng toán tử <-. Ví dụ: ch <- 1 gửi giá trị 1 vào kênh ch.
