@@ -39,6 +39,12 @@ func query(sqlQuery string) {
 			}
 			fmt.Println(id, name)
 		}
+	err = rows.Err()
+	if err != nil {
+		panic(err.Error())
+	}
+
+}
 
 		err = rows.Err()
 		if err != nil {

@@ -14,8 +14,7 @@ func main() {
 	http.HandleFunc("/Cproduct", Cproduct)
 	http.HandleFunc("/Uproduct", Uproduct)
 	http.HandleFunc("/Dproduct", Dproduct)
-
-	fmt.Println("Current working directory:", http.Dir("./../FE"))
+	http.HandleFunc("/searchproduct", searchproduct)
 
 	http.HandleFunc("/signin", signin)
 	fmt.Print("Starting server at port 1707\n")
