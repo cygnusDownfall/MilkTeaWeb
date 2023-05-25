@@ -3,10 +3,34 @@
     <title>Cửa hàng</title>
     <link rel="../css/main.css" />
     <link rel="../css/shop.css" />
-    <script type="module" src="../js/shop.js">
-        
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+
+        function loadProduct() {
+
+            let itemcontain = document.getElementById("itemPanel");
+            let itemtempl = document.getElementsByTagName("template")[0];
+            console.log(itemcontain)
+            console.log(itemtempl)
+            let dataarray = postRequest("/Rproduct", "{'product':'all'}");
+            for (let i = 0; i < dataarray.length; i++) {
+                let node = itemtempl.content.querySelector("div");
+                console.log(node)
+
+                let tensptxt = node.content.querySelector("h3");
+                console.log(tensptxt)
+                tensptxt.content = dataarray[i].tensp;
+                let icon = node.content.querySelector("img");
+                icon.src = dataarray[i].iconencode;
+                console.log(icon)
+
+                itemcontain.appendChild(node);
+            }
+        }
+
     </script>
-    <script> </script>
 </header>
 
 <body>
@@ -14,7 +38,12 @@
 
     </div>
     <div class="leftsidePanel">
-        <div class="searchbar"></div>
+        <div class="searchbar">
+            <div class="searchtext"></div>
+            <button type="button" onclick="loadProduct()">
+                <ion-icon name="search-outline"></ion-icon>
+            </button>
+        </div>
     </div>
     <button type="button">xem sản phẩm </button>
     <div class="itemPanel" id="itemmainboard">

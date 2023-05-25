@@ -1,4 +1,4 @@
-export function encodeImageFileAsURL(file) {
+function encodeImageFileAsURL(file) {
     var reader = new FileReader();
     reader.onloadend = function () {
         console.log('Encoded image:', reader.result);
@@ -13,8 +13,7 @@ fileInput.addEventListener('change', function () {
     encodeImageFileAsURL(file);
 });
 
-
-export function postRequest(url,Body) {
+function postRequest(url,Body) {
     fetch(url, {
         method: "POST",
         body: Body,

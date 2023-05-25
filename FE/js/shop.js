@@ -1,11 +1,12 @@
-import * as main from main.js
+const somererular=require("./main.js")
 
 function loadProduct() {
+    
     let itemcontain = document.getElementById("itemPanel");
     let itemtempl = document.getElementsByTagName("template")[0];
     console.log(itemcontain)
     console.log(itemtempl)
-    let dataarray = main.postRequest("/Rproduct", "{'product':'all'}");
+    let dataarray = postRequest("/Rproduct", "{'product':'all'}");
     for (let i = 0; i < dataarray.length; i++) {
         let node = itemtempl.content.querySelector("div");
         console.log(node)
