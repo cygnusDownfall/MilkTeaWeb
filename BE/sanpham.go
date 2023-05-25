@@ -9,6 +9,7 @@ import (
 type product struct {
 	masp       string
 	tensp      string
+	gia        int
 	iconencode string
 }
 
