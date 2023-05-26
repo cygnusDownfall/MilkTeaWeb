@@ -6,12 +6,6 @@ function encodeImageFileAsURL(file) {
     reader.readAsDataURL(file);
 }
 
-// Usage example:
-var fileInput = document.querySelector('input[type="file"]');
-fileInput.addEventListener('change', function () {
-    var file = fileInput.files[0];
-    encodeImageFileAsURL(file);
-});
 
 function postRequest(url,Body) {
     fetch(url, {

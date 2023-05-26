@@ -54,11 +54,11 @@ func query(sqlQuery string) {
 */
 func exe(sqlExe string) bool {
 
-	db := connect("ql")
+	db := connect("milkteashop")
 	defer db.Close()
 	res, err := db.Exec(sqlExe)
 	if err != nil {
-		panic(err.Error())
+		fmt.Print(err)
 		return false
 	}
 	fmt.Print(res)
