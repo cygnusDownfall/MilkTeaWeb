@@ -1,57 +1,108 @@
 <!DOCTYPE html>
 <header>
     <title>Cửa hàng</title>
-    <link rel="../css/main.css" />
-    <link rel="../css/shop.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/shop.css" />
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="../js/main.js"></script>
     <script>
-
-        function loadProduct() {
+        async function loadProduct(key) {
+            let keyword = document.getElementById("keyword").value
+            console.log("keyword "+keyword)
 
             let itemcontain = document.getElementById("itemPanel");
+            itemcontain.innerHTML=""
             let itemtempl = document.getElementsByTagName("template")[0];
-            console.log(itemcontain)
-            console.log(itemtempl)
-            let dataarray = postRequest("/Rproduct", "{'product':'all'}");
-            for (let i = 0; i < dataarray.length; i++) {
-                let node = itemtempl.content.querySelector("div");
-                console.log(node)
+            console.log("itemcontain" + itemcontain)
+            console.log("itemtempl" + itemtempl)
+            let dataarray = await postRequest("/Rproduct", '{"product":"all"}');
+            console.log(dataarray)
 
-                let tensptxt = node.content.querySelector("h3");
+            let node = itemtempl.content.querySelector("div");
+            let tensptxt;
+            let icon;
+            console.log(node)
+
+
+            for (let i = 0, newitem; i < dataarray.length; i++) {
+                newitem = document.importNode(node, true)
+
+                tensptxt = newitem.querySelector("h3")
+                tensptxt.textContent += dataarray[i].tensp;
+                console.log(dataarray[i].tensp)
+
+                icon = node.querySelector("img")
+                icon.src += dataarray[i].icon;
                 console.log(tensptxt)
-                tensptxt.content = dataarray[i].tensp;
-                let icon = node.content.querySelector("img");
-                icon.src = dataarray[i].iconencode;
                 console.log(icon)
 
-                itemcontain.appendChild(node);
+                itemcontain.appendChild(newitem);
             }
         }
-
+        function openTab(nametab) {
+            const tab = document.getElementById(nametab)
+            tab.hidden = false
+            const masptxt =document.getElementById("maspOrder")
+            masptxt.value = 'aaaaaa'
+        }
+        async function order(Masp, Thoihan, Diachi, Sdt) {
+            let res = await postRequest('/COrder', { masp: Masp, thoihangiao: Thoihan, diachi: Diachi, sdt: Sdt })
+            if (res) {
+                alert("thanh cong:" + res)
+            } else {
+                alert("that bai:" + res)
+            }
+        }
+        loadProduct()
     </script>
 </header>
 
 <body>
-    <div class="topPanel">
+    <div class="pagelinear">
+        <div class="topPanel">
 
-    </div>
-    <div class="leftsidePanel">
-        <div class="searchbar">
-            <div class="searchtext"></div>
-            <button type="button" onclick="loadProduct()">
-                <ion-icon name="search-outline"></ion-icon>
-            </button>
+        </div>
+        <div class="rowlinear">
+            <div class="leftsidePanel">
+                <div class="searchbar">
+                    <div class="searchtext">Tìm kiếm:
+                        <input type="text" name="keyword" id="keyword" onchange="">
+                        <button type="button" onclick="loadProduct()">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="itemPanel" id="itemPanel">
+
+            </div>
+            <template id="itemTemplate">
+                <div class="item">
+                    <h3 name="tensptext"></h3>
+                    <img name="icon" src="" alt="no img">
+                    <button type="button" name="order" onclick="openTab('ordertab')">Đặt hàng</button>
+                </div>
+            </template>
+        </div>
+
+        <div id="ordertab" class="ordertab" hidden>
+            <table>
+                <tr>
+                    <td>
+                        Mã sản phẩm:
+                    </td>
+                    <td>
+                        <input type="text" name="masp" id="maspOrder" readonly>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
-    <button type="button">xem sản phẩm </button>
-    <div class="itemPanel" id="itemmainboard">
-        <template id="itemTemplate">
-            <div class="item">
-                <h3 name="tensptext"></h3>
-                <img name="icon" src="" alt="no img">
-            </div>
-        </template>
-    </div>
+
 </body>
+<script>
+    loadProduct()
+</script>

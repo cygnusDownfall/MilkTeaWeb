@@ -7,15 +7,14 @@ import (
 )
 
 type product struct {
-	masp  string
-	tensp string
-	gia   int
-	icon  string
+	Masp  string `json:"masp"`
+	Tensp string `json:"tensp"`
+	Gia   int    `json:"gia"`
+	Icon  string `json:"icon"`
 }
 
 func Rproduct(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/Rproduct" {
-		fmt.Print("R")
 		var data []product
 		var sp product
 		db := connect("milkteashop")
@@ -31,13 +30,13 @@ func Rproduct(w http.ResponseWriter, r *http.Request) {
 			if err != nil {
 				panic(err.Error())
 			}
-			sp.masp = masp
-			sp.tensp = tensp
-			sp.gia = gia
-			sp.icon = iconencode
+			sp.Masp = masp
+			sp.Tensp = tensp
+			sp.Gia = gia
+			sp.Icon = iconencode
 
-			fmt.Print(masp + tensp + string(gia) + iconencode)
-			fmt.Print(sp.masp + sp.tensp + string(sp.gia) + sp.icon)
+			fmt.Println("masp=" + masp + "::::::::::::")    // + tensp + string(gia) + iconencode
+			fmt.Println("masp=" + sp.Masp + "::::::::::::") // + sp.tensp + string(sp.gia) + sp.icon
 
 			data = append(data, sp)
 		}
@@ -46,7 +45,8 @@ func Rproduct(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		w.Write(datajsonbyte)
-		fmt.Print(data)
+		fmt.Println(data)
+		fmt.Println(string(datajsonbyte))
 		return
 	}
 }
@@ -67,9 +67,9 @@ func searchproduct(w http.ResponseWriter, r *http.Request) {
 			if err != nil {
 				panic(err.Error())
 			}
-			data[i].masp = masp
-			data[i].tensp = tensp
-			data[i].icon = iconencode
+			data[i].Masp = masp
+			data[i].Tensp = tensp
+			data[i].Icon = iconencode
 		}
 		datajsonbyte, err := json.Marshal(data)
 		if err == nil {
@@ -87,13 +87,15 @@ func Cproduct(w http.ResponseWriter, r *http.Request) {
 		reqbpdy := json.NewDecoder(r.Body)
 		err := reqbpdy.Decode(&sp)
 
-		fmt.Println(sp.masp + sp.tensp + sp.icon)
+		fmt.Println(sp.Masp + ";;;;;;;" + sp.Tensp + ";;;;;;;;;;" + sp.Icon)
 
 		if err != nil {
 			panic(err)
 		}
 
-		s := fmt.Sprintf("insert into sanpham(masp,tensp,gia,hinh) values('%s','%s','%d','%s')", sp.masp, sp.tensp, sp.gia, sp.icon)
+		//lay ma sp cu
+
+		s := fmt.Sprintf("insert into sanpham(masp,tensp,gia,hinh) values('%s','%s','%d','%s')", sp.Masp, sp.Tensp, sp.Gia, sp.Icon)
 		result := exe(s)
 		var kq string
 		if result {
@@ -102,7 +104,7 @@ func Cproduct(w http.ResponseWriter, r *http.Request) {
 			kq = "{'res':false}"
 		}
 		datajsonbyte, err := json.Marshal(kq)
-		if err == nil {
+		if err != nil {
 			return
 		}
 		w.Write(datajsonbyte)
@@ -119,7 +121,7 @@ func Uproduct(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			panic(err)
 		}
-		s := fmt.Sprintf("UPDATE sanpham SET tensp = '%s', gia = '%d', icon = '%s' WHERE masp = '%s' ", sp.tensp, sp.gia, sp.icon, sp.masp)
+		s := fmt.Sprintf("UPDATE sanpham SET tensp = '%s', gia = '%d', icon = '%s' WHERE masp = '%s' ", sp.Tensp, sp.Gia, sp.Icon, sp.Masp)
 		result := exe(s)
 		var kq string
 		if result {

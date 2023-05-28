@@ -6,21 +6,19 @@ function encodeImageFileAsURL(file) {
     reader.readAsDataURL(file);
 }
 
-
-function postRequest(url,Body) {
-    fetch(url, {
+async function postRequest(url, Body) {
+    const res = await fetch(url, {
         method: "POST",
-        body: Body,
+        body: JSON.stringify(Body),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }
-    })
-        .then((response) => response.json())
-        .then((json) => {
-            let data=JSON.parse(json);
-            return data;
-        });
+    });
+    return res.json()
 }
 
-
-
+function autoIncrease(previousID, increaseAmount) {
+    let previousValue = parseInt(previousID.slice(2));
+    let increasedValue = previousValue + increaseAmount;
+    return previousID.slice(0,2) + increasedValue.toString().padStart(3, '0');
+  }
