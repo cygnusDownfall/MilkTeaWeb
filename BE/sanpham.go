@@ -103,10 +103,8 @@ func Cproduct(w http.ResponseWriter, r *http.Request) {
 		} else {
 			kq = "{'res':false}"
 		}
-		datajsonbyte, err := json.Marshal(kq)
-		if err != nil {
-			return
-		}
+		datajsonbyte := []byte(kq)
+
 		w.Write(datajsonbyte)
 		return
 	}
@@ -129,10 +127,8 @@ func Uproduct(w http.ResponseWriter, r *http.Request) {
 		} else {
 			kq = "{\"res\":false}"
 		}
-		datajsonbyte, err := json.Marshal(kq)
-		if err == nil {
-			return
-		}
+		datajsonbyte := []byte(kq)
+
 		w.Write(datajsonbyte)
 		return
 	}
@@ -153,10 +149,8 @@ func Dproduct(w http.ResponseWriter, r *http.Request) {
 		} else {
 			kq = "{'res':false}"
 		}
-		datajsonbyte, err := json.Marshal(kq)
-		if err == nil {
-			return
-		}
+		datajsonbyte := []byte(kq)
+
 		w.Write(datajsonbyte)
 		return
 	}

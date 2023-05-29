@@ -17,8 +17,7 @@
             console.log("itemcontain" + itemcontain)
             console.log("itemtempl" + itemtempl)
             let dataarray = await postRequest("/Rproduct", '{"product":"all"}');
-            console.log(dataarray)
-
+            
             let node = itemtempl.content.querySelector("div");
             let tensptxt;
             let icon;
@@ -32,8 +31,8 @@
                 tensptxt.textContent += dataarray[i].tensp;
                 console.log(dataarray[i].tensp)
 
-                icon = node.querySelector("img")
-                icon.src += dataarray[i].icon;
+                icon = newitem.querySelector("img")
+                icon.src ="../Texture/"+ dataarray[i].icon;
                 console.log(tensptxt)
                 console.log(icon)
 
@@ -80,10 +79,10 @@
 
             </div>
             <template id="itemTemplate">
-                <div class="item">
+                <div class="item,movingDiv">
                     <h3 name="tensptext"></h3>
                     <img name="icon" src="" alt="no img">
-                    <button type="button" name="order" onclick="openTab('ordertab')">Đặt hàng</button>
+                    <button type="button" name="order" onclick="openTab('ordertab'),move(this.parent,'carl')">Đặt hàng</button>
                 </div>
             </template>
         </div>
@@ -100,6 +99,7 @@
                 </tr>
             </table>
         </div>
+        <div id="carl" ></div>
     </div>
 
 </body>
