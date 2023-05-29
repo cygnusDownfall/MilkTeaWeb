@@ -7,12 +7,6 @@ import (
 	"strconv"
 )
 
-func autoIncrease(previousid string, increaseAmount int) string {
-	previousValue, _ := strconv.Atoi(previousid[2:])
-	increasedValue := previousValue + increaseAmount
-	return fmt.Sprintf("%s%03d", previousid[0:2], increasedValue)
-}
-
 func main() {
 	fileserver := http.FileServer(http.Dir("./../FE"))
 	http.Handle("/", fileserver)
@@ -31,5 +25,10 @@ func main() {
 	if err := http.ListenAndServe(":1707", nil); err != nil {
 		log.Fatal(err)
 	}
+}
 
+func autoIncrease(previousid string, increaseAmount int) string {
+	previousValue, _ := strconv.Atoi(previousid[2:])
+	increasedValue := previousValue + increaseAmount
+	return fmt.Sprintf("%s%03d", previousid[0:2], increasedValue)
 }

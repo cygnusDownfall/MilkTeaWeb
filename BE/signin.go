@@ -46,5 +46,4 @@ func signin(w http.ResponseWriter, r *http.Request) {
 
 		w.Write(datajsonbyte)
 	}
-
 }
