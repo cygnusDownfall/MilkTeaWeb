@@ -83,18 +83,19 @@
     </div>
 </body>
 <script>
-function signin(){
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/signin");
-    xhr.onload = function(event) {
-        let responded=JSON.parse(event.target.response) 
-        if(responded.res!=false){
-            window.location='localhost:1707/html/ad.html'
-        }
-        console.log("The server responded with: " + event.target.response);
-    };
-    var formData = new FormData(document.getElementById('signinform'));
-    xhr.send(formData);
+async function signin(){
+    let ttk=document.getElementById("username").value
+    let mkv=document.getElementById("username").value
+    let tk={tentk:ttk,mk:mkv}
+    
+    let result=await postRequest("/signin",tk)
+    console.log(result)
+    if(result.res!=false){
+        window.location.href="ad.html"
+
+    }else{
+        alert("DANG NHAP THAT BAI! VUI LONG KIEM TRA THONG TIN")
+    }
 }
 </script>
 </html>

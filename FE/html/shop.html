@@ -45,6 +45,9 @@
             const masptxt =document.getElementById("maspOrder")
             masptxt.value = 'aaaaaa'
         }
+        function addOrderUI(){
+
+        }
         async function order(Masp, Thoihan, Diachi, Sdt) {
             let res = await postRequest('/COrder', { masp: Masp, thoihangiao: Thoihan, diachi: Diachi, sdt: Sdt })
             if (res) {
@@ -60,7 +63,12 @@
 <body>
     <div class="pagelinear">
         <div class="topPanel">
+            <button>
+                Đơn hàng: <ion-icon name="cart-outline"></ion-icon>
+            </button>
+            <div>
 
+            </div>
         </div>
         <div class="rowlinear">
             <div class="leftsidePanel">

@@ -1,19 +1,31 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 )
 
+type taikhoan struct {
+	Tentk string `json:"tentk"`
+	Mk    string `json:"mk"`
+}
+
 func signin(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/signin" {
-		r.ParseForm()
-		tdn := r.FormValue("tdn")
-		mk := r.FormValue("mk")
+		var tk taikhoan
+		fmt.Println(r.Body)
+		reqbpdy := json.NewDecoder(r.Body)
+		err := reqbpdy.Decode(&tk)
 
-		sql := fmt.Sprintf("select * from taikhoan where tdn='%s' and mk='%s'", tdn, mk)
+		if err != nil {
+			panic(err)
+		}
+		sql := fmt.Sprintf("select * from taikhoan where tentk='%s' and mk='%s'", tk.Tentk, tk.Mk)
+
 		db := connect("milkteashop")
 		defer db.Close()
+
 		rows, err := db.Query(sql)
 		if err != nil {
 			panic("loi sign in:" + err.Error())
@@ -26,9 +38,9 @@ func signin(w http.ResponseWriter, r *http.Request) {
 		}
 		var kq string
 		if i == 1 {
-			kq = fmt.Sprintf("{'res':'%s'}", vaitro)
+			kq = "{\"res\":true}"
 		} else {
-			kq = "{'res':false}"
+			kq = "{\"res\":false}"
 		}
 		datajsonbyte := []byte(kq)
 
