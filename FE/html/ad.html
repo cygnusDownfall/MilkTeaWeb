@@ -4,12 +4,16 @@
 <head>
   <style>
     table {
-      border-collapse: collapse; /* Loại bỏ đường viền kép */
-      width: 100%; /* Chiều rộng bằng màn hình */
-      overflow-x: auto; /* Tạo thanh cuộn nếu quá rộng */
+      border-collapse: collapse;
+      /* Loại bỏ đường viền kép */
+      width: 100%;
+      /* Chiều rộng bằng màn hình */
+      overflow-x: auto;
+      /* Tạo thanh cuộn nếu quá rộng */
     }
 
-    th, td {
+    th,
+    td {
       border: 1px solid black;
       padding: 10px;
       text-align: left;
@@ -37,7 +41,7 @@
 
     /* Màu nền cho hàng khi di chuột */
     tr:hover {
-      background-color:#aaaaaaaa;
+      background-color: #aaaaaaaa;
     }
 
     /* Màu nền cho ô khi nhấn vào */
@@ -45,7 +49,9 @@
       background-color: red;
     }
   </style>
+  <script src="../js/main.js"></script>
 </head>
+
 <body>
   <h1>Giao diện quản lý hàng</h1>
   <table id="inventory">
@@ -53,8 +59,9 @@
       <tr>
         <th>Mã hàng</th>
         <th>Tên hàng</th>
-        <th>Số lượng</th>
+        <!--<th>Số lượng</th>-->
         <th>Đơn giá</th>
+        <th>hình ảnh</th>
         <th>Thao tác</th>
       </tr>
     </thead>
@@ -70,80 +77,74 @@
     <input type="text" id="code"><br>
     <label>Tên hàng:</label>
     <input type="text" id="name"><br>
-    <label>Số lượng:</label>
-    <input type="number" id="quantity"><br>
+    <!-- <label>Số lượng:</label>
+    <input type="number" id="quantity"><br> -->
     <label>Đơn giá:</label>
     <input type="number" id="price"><br>
+    <label>Hình ảnh:</label>
+    <input type="file" id="icon"><br>
     <button id="save">Lưu</button>
     <button id="cancel">Hủy</button>
   </div>
 
-  <!-- Một script để xử lý logic của giao diện -->
   <script>
-
-    // Một mảng để lưu trữ danh sách các mặt hàng
     let items = [];
 
-    // Một biến để lưu trữ chỉ số của mặt hàng đang được sửa
+    async function start() {
+      items = await loadProduct("")
+      showItems()
+    }
+    start()
+    console.log(items)
     let editIndex = -1;
 
-    // Một hàm để hiển thị danh sách các mặt hàng lên bảng
     function showItems() {
-      // Lấy phần tử tbody
       let tbody = document.getElementById("items");
-      // Xóa nội dung cũ
       tbody.innerHTML = "";
-      // Duyệt qua mảng items
       for (let i = 0; i < items.length; i++) {
-        // Lấy một mặt hàng
         let item = items[i];
-        // Tạo một dòng mới
         let tr = document.createElement("tr");
-        // Tạo các ô cho các thuộc tính của mặt hàng
         let tdCode = document.createElement("td");
-        tdCode.innerText = item.code;
+        tdCode.innerText = item.masp;
         let tdName = document.createElement("td");
-        tdName.innerText = item.name;
-        let tdQuantity = document.createElement("td");
-        tdQuantity.innerText = item.quantity;
+        tdName.innerText = item.tensp;
+        // let tdQuantity = document.createElement("td");
+        // tdQuantity.innerText = item.quantity;
         let tdPrice = document.createElement("td");
-        tdPrice.innerText = item.price;
-        // Tạo một ô cho các nút thao tác
+        tdPrice.innerText = item.gia;
+        let tdIcon = document.createElement("td");
+        tdIcon.innerText = item.hinh;
         let tdAction = document.createElement("td");
-        // Tạo một nút để xóa mặt hàng
         let btnDelete = document.createElement("button");
         btnDelete.innerText = "Xóa";
-        btnDelete.onclick = function() {
-          // Xóa mặt hàng khỏi mảng
-          items.splice(i, 1);
-          // Hiển thị lại danh sách
+        btnDelete.onclick = async function () {
+          //xoa
+          var del = await deleteproduct({ masp: item.masp, tensp: "", icon: "", gia: 0})
+          if (del) {
+            items.splice(i, 1);
+          }
           showItems();
         };
-        // Thêm nút xóa vào ô thao tác
         tdAction.appendChild(btnDelete);
-        
-        // Tạo một nút để sửa mặt hàng
+
         let btnEdit = document.createElement("button");
         btnEdit.innerText = "Sửa";
-        btnEdit.onclick = function() {
-          // Lưu trữ chỉ số của mặt hàng đang được sửa
+        btnEdit.onclick = function () {
           editIndex = i;
-          // Hiển thị form nhập thông tin với các giá trị đã có của mặt hàng
           showForm(item);
         };
-        // Thêm nút sửa vào ô thao tác
         tdAction.appendChild(btnEdit);
 
-        // Thêm các ô vào dòng
         tr.appendChild(tdCode);
         tr.appendChild(tdName);
-        tr.appendChild(tdQuantity);
+        //tr.appendChild(tdQuantity);
         tr.appendChild(tdPrice);
+        tr.appendChild(tdIcon);
         tr.appendChild(tdAction);
         // Thêm dòng vào tbody
         tbody.appendChild(tr);
       }
-          }
+    }
 
     // Một hàm để hiển thị form nhập thông tin hàng mới hoặc sửa thông tin hàng cũ
     function showForm(item) {
@@ -159,14 +160,14 @@
         document.getElementById("quantity").value = item.quantity;
         document.getElementById("price").value = item.price;
       } else {
-         // Nếu không có đối số item, tức là đang thêm thông tin của mặt hàng mới
-         // Xóa các giá trị cũ trong form
-         document.getElementById("code").value = "";
-         document.getElementById("name").value = "";
-         document.getElementById("quantity").value = "";
-         document.getElementById("price").value = "";
+        // Nếu không có đối số item, tức là đang thêm thông tin của mặt hàng mới
+        // Xóa các giá trị cũ trong form
+        document.getElementById("code").value = "";
+        document.getElementById("name").value = "";
+        document.getElementById("quantity").value = "";
+        document.getElementById("price").value = "";
       }
-      
+
     }
 
     // Một hàm để ẩn form nhập thông tin hàng mới hoặc sửa thông tin hàng cũ
@@ -180,50 +181,99 @@
     }
 
     // Một hàm để lưu thông tin hàng mới vào mảng hoặc cập nhật thông tin hàng cũ trong mảng
-    function saveItem() {
+    async function saveItem() {
       // Lấy các giá trị từ form
       let code = document.getElementById("code").value;
       let name = document.getElementById("name").value;
-      let quantity = document.getElementById("quantity").value;
+      let icon = document.getElementById("icon").value;
       let price = document.getElementById("price").value;
       // Kiểm tra tính hợp lệ của các giá trị
-      if (code == "" || name == "" || quantity == "" || price == "") {
+      if (code == "" || name == "" || price == "") {
         alert("Vui lòng nhập đầy đủ thông tin!");
         return;
       }
-      if (quantity <= 0 || price <= 0) {
-        alert("Số lượng và đơn giá phải là số dương!");
+      if (price <= 0) {
+        alert("Đơn giá phải là số dương!");
         return;
       }
-      
+
       if (editIndex == -1) {
-         // Nếu editIndex bằng -1, tức là đang thêm thông tin của mặt hàng mới 
-         // Tạo một đối tượng để lưu trữ thông tin của mặt hàng 
-         let item = { 
-           code: code, 
-           name: name, 
-           quantity: quantity, 
-           price: price 
-         }; 
-         // Thêm đối tượng vào mảng items 
-         items.push(item); 
-       } else { 
-         // Nếu editIndex khác -1, tức là đang sửa thông tin của mặt hàng có chỉ số là editIndex 
-         // Cập nhật các thuộc tính của đối tượng trong mảng items 
-         items [editIndex].code = code; 
-         items [editIndex].name = name; 
-         items [editIndex].quantity = quantity; 
-         items [editIndex].price = price; 
-       }
-       
-       // Hiển thị lại danh sách các mặt hàng
-       showItems();
-       // Ẩn form nhập thông tin
-       hideForm();
+        // Nếu editIndex bằng -1, tức là đang thêm thông tin của mặt hàng mới 
+        // Tạo một đối tượng để lưu trữ thông tin của mặt hàng 
+        let item = {
+          masp: code,
+          tensp: name,
+          gia: Number(price),
+          hinh: icon
+        };
+        // Thêm đối tượng vào mảng items 
+        if (addproduct(item)) {
+          items.push(item);
+        }
+      } else {
+        // Nếu editIndex khác -1, tức là đang sửa thông tin của mặt hàng có chỉ số là editIndex 
+        // Cập nhật các thuộc tính của đối tượng trong mảng items 
+        let tmp = items[editIndex]
+        items[editIndex].masp = code;
+        items[editIndex].tensp = name;
+        items[editIndex].hinh = icon;
+        items[editIndex].gia = Number(price);
+
+        console.log(items[editIndex])
+        let updateRes = await updateproduct(items[editIndex])
+        if (!updateRes) {
+          items[editIndex] = tmp
+        }
+      }
+
+      // Hiển thị lại danh sách các mặt hàng
+      showItems();
+      // Ẩn form nhập thông tin
+      hideForm();
     }
 
+
+    async function loadProduct(key) {
+      let dataarray = await postRequest("/Rproduct", '{"product":"all"}');
+      return dataarray;
+    }
+
+    async function addproduct(sp) {
+      let result = await postRequest('/Cproduct', sp)
+      if (result.res) {
+        alert("them thanh cong")
+        return true
+      } else {
+        alert("them that bai")
+        return false
+      }
+    }
+
+    async function updateproduct(sp) {
+      let result = await postRequest('/Uproduct', sp)
+      if (result.res) {
+        alert("sua thanh cong")
+        return true
+      } else {
+        alert("sua that bai")
+        return false
+      }
+    }
+
+    async function deleteproduct(sp) {
+      let result = await postRequest('/Dproduct', sp)
+      if (result.res) {
+        alert("xoa thanh cong")
+        return true
+      } else {
+        alert("xoa that bai")
+        return false
+      }
+    }
+
+
     // Gán sự kiện cho nút thêm hàng mới
-    document.getElementById("add").onclick = function() {
+    document.getElementById("add").onclick = function () {
       // Hiển thị form nhập thông tin với các giá trị rỗng
       showForm();
     };
@@ -236,5 +286,5 @@
 
   </script>
 </body>
-</html>
 
+</html>

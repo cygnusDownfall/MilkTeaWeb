@@ -99,9 +99,9 @@ func Cproduct(w http.ResponseWriter, r *http.Request) {
 		result := exe(s)
 		var kq string
 		if result {
-			kq = "{'res':true}"
+			kq = "{\"res\":true}"
 		} else {
-			kq = "{'res':false}"
+			kq = "{\"res\":false}"
 		}
 		datajsonbyte := []byte(kq)
 
@@ -119,8 +119,9 @@ func Uproduct(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			panic(err)
 		}
-		s := fmt.Sprintf("UPDATE sanpham SET tensp = '%s', gia = '%d', icon = '%s' WHERE masp = '%s' ", sp.Tensp, sp.Gia, sp.Icon, sp.Masp)
+		s := fmt.Sprintf("UPDATE sanpham SET tensp = '%s', gia = '%d', hinh = '%s' WHERE masp = '%s' ", sp.Tensp, sp.Gia, sp.Icon, sp.Masp)
 		result := exe(s)
+		fmt.Println(result)
 		var kq string
 		if result {
 			kq = "{\"res\":true}"
@@ -130,24 +131,25 @@ func Uproduct(w http.ResponseWriter, r *http.Request) {
 		datajsonbyte := []byte(kq)
 
 		w.Write(datajsonbyte)
-		return
+
 	}
 }
 
 func Dproduct(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/Dproduct" {
-		err := r.ParseForm()
+		var sp product
+		reqbpdy := json.NewDecoder(r.Body)
+		err := reqbpdy.Decode(&sp)
 		if err != nil {
-			http.Error(w, "error:", http.StatusBadRequest)
-			return
+			panic(err)
 		}
-		s := fmt.Sprintf("delete from sanpham where masp='%s'", r.FormValue("masp"))
+		s := fmt.Sprintf("delete from sanpham where masp='%s'", sp.Masp)
 		result := exe(s)
 		var kq string
 		if result {
-			kq = "{'res':true}"
+			kq = "{\"res\":true}"
 		} else {
-			kq = "{'res':false}"
+			kq = "{\"res\":false}"
 		}
 		datajsonbyte := []byte(kq)
 

@@ -10,8 +10,10 @@ type order struct {
 	Madh        string `json:"madh"`
 	Masp        string `json:"masp"`
 	Thoihangiao string `json:"thoihangiao"`
+	Thoigiandat string `json:"thoigiandat"`
 	Diachi      string `json:"diachi"`
 	Sodienthoai string `json:"sdt"`
+	Soluong     string `json:"soluong"`
 }
 
 func COrder(w http.ResponseWriter, r *http.Request) {
